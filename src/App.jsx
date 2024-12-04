@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { crearTarea, listarTarea, eliminarTarea, actualizarTarea, estadoDeTarea, modificarTarea } from './api'
+import { listarTarea } from './api'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [tasks, setTasks] = useState([])
   const [form, setForm] = useState({title: "", description: ""})
   useEffect(() => {
     fetchTasksList()
   }, [])
+
+  
   const fetchTasksList = async() => {
     const {data} = await listarTarea()
+    console.log(data);
+    
     setTasks(data)
   }
   
@@ -34,12 +35,11 @@ function App() {
         <tbody>
           {
             tasks.map((task) => (
-              <tr key = {task[0]}>
-                <td>{task[0]}</td>
-                <td>{task[1]}</td>
-                <td>{task[2]}</td>
-                <td>{task[3]}</td>
-                <td>{task[4]}</td>
+              <tr key = {task}>
+                <td>{task["id"]}</td>
+                <td>{task["title"]}</td>
+                <td>{task["description"]}</td>
+                <td>{task["isdone"]}</td>
               </tr>
             ))
           }
