@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseAPI = "localhost:5000"
+const baseAPI = "http://localhost:5000"
 
 export const crearTarea = (tarea) => axios.post(baseAPI + "/crear", tarea)
 export const listarTarea = () => axios.get(baseAPI + "/listado")
